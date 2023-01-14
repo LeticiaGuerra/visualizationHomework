@@ -1,5 +1,5 @@
 .fig {
-  background-color: #ddd;
+  background-color: #008598E6;
 }
 
 .texto {
@@ -28,6 +28,7 @@
 .labels {
   font-size: 20px;
   font-family: "Fira Code";
+  color: #fff;
 }
 
 .year {
@@ -36,4 +37,8 @@
   fill: #bbb;
   text-anchor: middle;
   dominant-baseline: middle;
+}
+
+#titulo {
+  background-color: #008598E6;
 }

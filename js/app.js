@@ -76,7 +76,27 @@ const render = (data) => {
     .style("top", y(d.cantidad) - 30 + "px")
 
   country.text(d.cantidad.toLocaleString("en-US"))
-  type.text(d.tipo)
+  if(d.tipo == "compu"){
+    type.text("Computadora")
+  }
+  if(d.tipo == "net"){
+    type.text("Internet")
+  }
+  if(d.tipo == "Televisor"){
+    type.text("Televisor")
+  }
+  if(d.tipo == "cable"){
+    type.text("TV de paga")
+  }
+  if(d.tipo == "telefono"){
+    type.text("Teléfono")
+  }
+  if(d.tipo == "radio"){
+    type.text("Radio")
+  }if(d.tipo == "luz"){
+    type.text("Electricidad")
+  }
+
   showT = d.country
 }
 
@@ -90,7 +110,7 @@ function color(tipo) {
     return "#FF000080"
   }
   if(tipo == "net"){
-    return "#00859880"
+    return "#00000080"
   }
   if(tipo == "Televisor"){
     return "#57236480"
@@ -104,7 +124,9 @@ function color(tipo) {
   if(tipo == "radio"){
     return "#00800080"
   }
-  return "#00FF0080"
+  if(tipo == "luz"){
+    return "#00FF0080"
+  }
 }
 
 load();
