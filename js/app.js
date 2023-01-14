@@ -1,10 +1,14 @@
 const graf = d3.select("#graf")
+const tooltip = d3.select("#tooltip")
+const country = d3.select("#country")
+const type = d3.select("#type")
 
 const margins = { left: 75, top: 40, right: 10, bottom: 50 }
 const anchoTotal = +graf.style("width").slice(0, -2)
 const altoTotal = (anchoTotal * 9) / 16
 const ancho = anchoTotal - margins.left - margins.right
 const alto = altoTotal - margins.top - margins.bottom
+
 
 const svg = graf
   .append("svg")
@@ -59,18 +63,48 @@ const render = (data) => {
     .append("circle")
     .attr("cx", (d) => x(d.anio))
     .attr("cy", (d) => y(d.cantidad))
-    .attr("r", 5)
+    .attr("r", 8)
     .attr("fill", (d) => color(d.tipo))
+    .on("mouseover", (e, d) => showTooltip(d))
+    .on("mouseout", hideTooltip)
  }
+
+ const showTooltip = (d) => {
+  tooltip.style("display", "block")
+  tooltip
+    .style("left", x(d.anio) - 30 + "px")
+    .style("top", y(d.cantidad) - 30 + "px")
+
+  country.text(d.cantidad.toLocaleString("en-US"))
+  type.text(d.tipo)
+  showT = d.country
+}
+
+const hideTooltip = () => {
+  tooltip.style("display", "none")
+}
 
 
 function color(tipo) {
-  console.log(tipo)
   if(tipo == "compu"){
-    return "#FF0000"
-  }else{
-    return "#00FF00"
+    return "#FF000080"
   }
+  if(tipo == "net"){
+    return "#00859880"
+  }
+  if(tipo == "Televisor"){
+    return "#57236480"
+  }
+  if(tipo == "cable"){
+    return "#80008080"
+  }
+  if(tipo == "telefono"){
+    return "#0000FF80"
+  }
+  if(tipo == "radio"){
+    return "#00800080"
+  }
+  return "#00FF0080"
 }
 
 load();
